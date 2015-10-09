@@ -29,3 +29,7 @@ output "public_cidr" {
 output "availability_zones" {
     value = "${join(", ", aws_subnet.private.*.availability_zone)}"
 }
+
+output "public_route_tables" {
+    value = "${join(", ", aws_route_table.public.*.id)}"
+}
