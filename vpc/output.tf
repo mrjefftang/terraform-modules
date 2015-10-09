@@ -26,14 +26,6 @@ output "public_cidr" {
     value = "${join(", ", aws_subnet.public.*.cidr_block)}"
 }
 
-output "nat_interfaces" {
-    value = "${join(", ", aws_network_interface.nat.*.id)}"
-}
-
-output "nat_security_group_id" {
-    value = "${aws_security_group.nat.id}"
-}
-
 output "availability_zones" {
     value = "${join(", ", aws_subnet.private.*.availability_zone)}"
 }

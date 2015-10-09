@@ -89,8 +89,6 @@ Outputs
  - `private_cidr` - comma separated list of private subnet CIDR
  - `protected_cidr` - comma separated list of protected subnet CIDR
  - `public_cidr` - comma separated list of public subnet CIDR
- - `nat_interfaces` - comma separated list network interfaces for NAT interfaces
- - `nat_security_group_id` - NAT security group id
  - `availability_zones` - comma separated list of availability zones
 
 

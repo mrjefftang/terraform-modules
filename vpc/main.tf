@@ -19,38 +19,6 @@ resource "aws_internet_gateway" "main" {
     }
 }
 
-resource "aws_security_group" "nat" {
-    name = "fw_nat"
-    description = "Allow all inbound from VPC to outbound Internet"
-    vpc_id = "${aws_vpc.main.id}"
-
-    ingress {
-        from_port = 0
-        to_port = 0
-        protocol = -1
-        cidr_blocks = ["${var.cidr}"]
-    }
-
-    egress {
-        from_port = 0
-        to_port = 0
-        protocol = -1
-        cidr_blocks = ["0.0.0.0/0"]
-    }
-}
-
-resource "aws_network_interface" "nat" {
-    subnet_id = "${element(aws_subnet.public.*.id, count.index)}"
-    source_dest_check = "false"
-    count = 3
-    security_groups = ["${aws_security_group.nat.id}"]
-
-    tags {
-        Name = "eth-${element(split(",", var.availability_zones), count.index)}-nat"
-        Environment = "${var.environment}"
-    }
-}
-
 resource "aws_route_table" "public" {
     vpc_id = "${aws_vpc.main.id}"
     route {
@@ -66,10 +34,6 @@ resource "aws_route_table" "public" {
 
 resource "aws_route_table" "nat" {
     vpc_id = "${aws_vpc.main.id}"
-    route {
-        cidr_block = "0.0.0.0/0"
-        network_interface_id = "${element(aws_network_interface.nat.*.id, count.index)}"
-    }
     count = 3
 
     tags {
