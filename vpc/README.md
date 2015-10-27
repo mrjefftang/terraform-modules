@@ -91,6 +91,7 @@ Outputs
  - `public_cidr` - comma separated list of public subnet CIDR
  - `availability_zones` - comma separated list of availability zones
  - `public_route_tables` - comma separated list of public route table ids
+ - `private_route_tables` - comma separated list of private route table ids
 
 Authors
 =======

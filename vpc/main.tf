@@ -32,7 +32,7 @@ resource "aws_route_table" "public" {
     }
 }
 
-resource "aws_route_table" "nat" {
+resource "aws_route_table" "private" {
     vpc_id = "${aws_vpc.main.id}"
     count = 3
 
@@ -50,13 +50,13 @@ resource "aws_route_table_association" "public" {
 
 resource "aws_route_table_association" "nat-prot" {
     subnet_id = "${element(aws_subnet.protected.*.id, count.index)}"
-    route_table_id = "${element(aws_route_table.nat.*.id, count.index)}"
+    route_table_id = "${element(aws_route_table.private.*.id, count.index)}"
     count = 3
 }
 
 resource "aws_route_table_association" "nat-priv" {
     subnet_id = "${element(aws_subnet.private.*.id, count.index)}"
-    route_table_id = "${element(aws_route_table.nat.*.id, count.index)}"
+    route_table_id = "${element(aws_route_table.private.*.id, count.index)}"
     count = 3
 }
 

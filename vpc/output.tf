@@ -33,3 +33,7 @@ output "availability_zones" {
 output "public_route_tables" {
     value = "${join(", ", aws_route_table.public.*.id)}"
 }
+
+output "private_route_tables" {
+    value = "${join(", ", aws_route_table.private.*.id)}"
+}
