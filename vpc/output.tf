@@ -3,37 +3,37 @@ output "vpc_id" {
 }
 
 output "private_subnets" {
-    value = "${join(", ", aws_subnet.private.*.id)}"
+    value = "${join(",", aws_subnet.private.*.id)}"
 }
 
 output "protected_subnets" {
-    value = "${join(", ", aws_subnet.protected.*.id)}"
+    value = "${join(",", aws_subnet.protected.*.id)}"
 }
 
 output "public_subnets" {
-    value = "${join(", ", aws_subnet.public.*.id)}"
+    value = "${join(",", aws_subnet.public.*.id)}"
 }
 
 output "private_cidr" {
-    value = "${join(", ", aws_subnet.private.*.cidr_block)}"
+    value = "${join(",", aws_subnet.private.*.cidr_block)}"
 }
 
 output "protected_cidr" {
-    value = "${join(", ", aws_subnet.protected.*.cidr_block)}"
+    value = "${join(",", aws_subnet.protected.*.cidr_block)}"
 }
 
 output "public_cidr" {
-    value = "${join(", ", aws_subnet.public.*.cidr_block)}"
+    value = "${join(",", aws_subnet.public.*.cidr_block)}"
 }
 
 output "availability_zones" {
-    value = "${join(", ", aws_subnet.private.*.availability_zone)}"
+    value = "${join(",", aws_subnet.private.*.availability_zone)}"
 }
 
 output "public_route_tables" {
-    value = "${join(", ", aws_route_table.public.*.id)}"
+    value = "${join(",", aws_route_table.public.*.id)}"
 }
 
 output "private_route_tables" {
-    value = "${join(", ", aws_route_table.private.*.id)}"
+    value = "${join(",", aws_route_table.private.*.id)}"
 }
