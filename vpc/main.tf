@@ -36,6 +36,10 @@ resource "aws_route_table" "private" {
     vpc_id = "${aws_vpc.main.id}"
     count = 3
 
+    lifecycle {
+        ignore_changes = ["route"]
+    }
+
     tags {
         Name = "rt-${element(split(",", var.availability_zones), count.index)}-nat"
         Environment = "${var.environment}"
